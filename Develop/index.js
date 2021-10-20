@@ -1,10 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util') //Not sure if I need this???
-
 const generateMarkdown = require('./utils/generateMarkdown')
 
-let questions = [
+const promptUser = () => {
+return inquirer.prompt([
     {
       type: 'input',
       name: 'name', 
@@ -44,7 +43,7 @@ let questions = [
     {
       type: 'input', 
       name: 'title',
-      message: 'What is the title of your project?',
+      message: 'What is the title of your project? (Required)',
       validate: titleInput => {
         if(titleInput) {
           return true
@@ -56,7 +55,7 @@ let questions = [
     {
      type: 'input',
      name: 'description',
-     message: 'Please write a description of your project:',
+     message: 'Please write a description of your project: (Required)',
      validate: descriptionInput => {
       if(descriptionInput) {
         return true
@@ -69,14 +68,8 @@ let questions = [
       type: 'list',
       name: 'license',
       message: 'Which license would you like to assign to you project?',
-      choices: ['Apache 2.0', 'GPL v3', 'MIT', 'GPL v2', 'BSD 3', 'none'],
-      validate: licenseInput => {
-        if(licenseInput) {
-          return true
-        }else{ console.log('Please choose one of the licenses from the list or choose NONE')
-          return false
-        }
-      } 
+      choices: ['Apache 2.0', 'GPL v3', 'GPL v2', 'MIT', 'BSD 3'],
+   
     },
     {
       type: 'input',
@@ -98,19 +91,21 @@ let questions = [
       name: 'contribute',
       messager: 'Please include any guidelines for the user to contribute to your project'
     }
-
-  ];
-  
-  var inquirer = require('inquirer');
-  
-  const promptUser = (questions) => {
-  return inquirer.prompt([questions])
-  }
-
+  ])
+}
   promptUser()
-  .then((answers) => {
-    // Use user feedback for... whatever!!
-  })
+    .then(answers => console.log(answers))
+    //.then(rendeLicenseBadge) //stage badge options
+    //.then(renderLicenseLink) //stage badge links
+    //.then(renderLicenseSection) //connect answers to appropriate link and badge
+    
+    const readMe = generateMarkdown(data)
+  
+    fs.writeFile('README.md', readMe, err => {
+      if(err) throw err
+      console.log('Your README file is complete. Go view the README.md file to see your new README document')
+    })
+
   .catch((error) => {
     if (error.isTtyError) {
       // Prompt couldn't be rendered in the current environment
@@ -119,7 +114,7 @@ let questions = [
     }
   });
 
-
+/*
 
   
 // TODO: Create a function to write README file
@@ -138,4 +133,4 @@ init();
 
 const printReadMeData = readMeDataArr => {
     console.log(readMeDataArr);
-}
+} */

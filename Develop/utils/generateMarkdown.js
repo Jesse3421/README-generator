@@ -1,10 +1,48 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
+//LICENSE BADGES
+/* licenseArr = [
+  {
+    [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]
+  },
+  {
+  [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)]
+  },
+  {
+    [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]  
+  },
+  {
+    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+  },
+  {
+    [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]
+  },
+  {
+    none: ''
+  }
+]
+
 
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {
+function renderLicenseBadge(licenseAnswer) {
+  if(licenseAnswer == 'Apache 2.0'){
+    return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`
+  } else if (licenseAnswer == 'GPL v3'){
+    return `[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)]`
+  } else if (licenseAnswer == 'GPL v2'){
+    return `[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]`
+  } else if (licenseAnswer == 'MIT'){
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`
+  } else if (licenseAnswer == 'BSD 3'){
+    `[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]`
+  } else {
+    ''
+  }
 
   
-}
+  
+
+
+
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -20,12 +58,13 @@ function renderLicenseSection(license) {
 
 }
 
+*/
 
 function generateMarkdown(data) {
   return `# ${data.title}
   https://github.com/${data.username}/${data.title}
   ### Description
-  ${data.description}
+  ${data.licenseBadge} ${data.description}
   ### Table of Contents 
   * [Installation](#installation)
   * [Usage](#usage)
