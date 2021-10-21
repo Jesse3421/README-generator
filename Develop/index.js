@@ -94,12 +94,11 @@ return inquirer.prompt([
   ])
 }
   promptUser()
-    .then(answers => console.log(answers))
-    //.then(rendeLicenseBadge) //stage badge options
-    //.then(renderLicenseLink) //stage badge links
-    //.then(renderLicenseSection) //connect answers to appropriate link and badge
-    
-    const readMe = generateMarkdown(data)
+    .then(data => console.log(data))
+    .then(data => {
+      return generateMarkdown(data)
+    })
+    .thenconst readMe = generateMarkdown(data)
   
     fs.writeFile('README.md', readMe, err => {
       if(err) throw err

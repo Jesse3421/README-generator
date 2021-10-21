@@ -3,7 +3,8 @@
 //renderLicenseBadge()
 
 // If there is no license, return an empty string
- function renderLicenseBadge(data.license) {
+ function renderLicenseBadge(data) {
+   console.log(license)
   
   if(data.license == 'Apache 2.0'){
     return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`
@@ -20,7 +21,7 @@
   }
 
 }
-console.log(renderLicenseBadge('BSD 3'))
+console.log(renderLicenseBadge())
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -52,11 +53,15 @@ async function setLicense() {
   console.log(`${badgeResponse} , ${linkResponse}`)
 }
 
-setLicense()
 
+
+module.exports = generateMarkdown;
 
 
 function generateMarkdown(data) {
+  setLicense(data){
+    console.log(data.license)
+  }
   return `# ${data.title}
   https://github.com/${data.username}/${data.title}
   ### Description
@@ -86,4 +91,3 @@ function generateMarkdown(data) {
 `;
 }
 
-module.exports = generateMarkdown;
