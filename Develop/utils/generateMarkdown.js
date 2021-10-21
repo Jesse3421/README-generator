@@ -1,19 +1,19 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 //LICENSE BADGES
 //renderLicenseBadge()
- licenseAnswer = 'Apache 2.0'
+
 // If there is no license, return an empty string
- function renderLicenseBadge(licenseAnswer) {
+ function renderLicenseBadge(data.license) {
   
-  if(licenseAnswer == 'Apache 2.0'){
+  if(data.license == 'Apache 2.0'){
     return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`
-  } else if (licenseAnswer == 'GPL v3'){
+  } else if (data.license == 'GPL v3'){
     return `[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)]`
-  } else if (licenseAnswer == 'GPL v2'){
+  } else if (data.license == 'GPL v2'){
     return `[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]`
-  } else if (licenseAnswer == 'MIT'){
+  } else if (data.license == 'MIT'){
     return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`
-  } else if (licenseAnswer == 'BSD 3'){
+  } else if (data.license == 'BSD 3'){
     return `[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]`
   } else {
              `''` //need to figure out how to show empty response
@@ -24,30 +24,31 @@ console.log(renderLicenseBadge('BSD 3'))
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(licenseAnswer) {
-  if(licenseAnswer == 'Apache 2.0'){
+function renderLicenseLink(data.license) {
+  if(data.license == 'Apache 2.0'){
     return `(https://img.shields.io/badge/License-Apache%202.0-blue.svg)`
-  } else if (licenseAnswer == 'GPL v3'){
+  } else if (data.license == 'GPL v3'){
     return `(http://www.gnu.org/licenses/gpl-3.0)`
-  } else if (licenseAnswer == 'GPL v2'){
+  } else if (data.license == 'GPL v2'){
     return `(https://img.shields.io/badge/License-GPL%20v2-blue.svg)`
-  } else if (licenseAnswer == 'MIT'){
+  } else if (data.license == 'MIT'){
     return `(https://opensource.org/licenses/MIT)`
-  } else if (licenseAnswer == 'BSD 3'){
+  } else if (data.license == 'BSD 3'){
     return `(https://opensource.org/licenses/BSD-3-Clause)`
   } else {
     `''`
   }
 }
 
-console.log(renderLicenseLink('BSD 3'))
+console.log(renderLicenseLink())
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
+
 async function setLicense() {
-  const badgeResponse = await renderLicenseBadge(licenseAnswer)
+  const badgeResponse = await renderLicenseBadge(data.license)
   console.log('Response Recieved')
-  const linkResponse = await renderLicenseLink(licenseAnswer)
+  const linkResponse = await renderLicenseLink(data.license)
   console.log(`${badgeResponse} , ${linkResponse}`)
 }
 
@@ -72,8 +73,8 @@ function generateMarkdown(data) {
   ### Usage 
   Follow these steps to install project. ${data.usage}
   ### License 
-  The project is licensed under ${data.license} license. 
-  ![Github License] (https://img.shields.io/badge/license-MIT-blue.svg)
+  The project is licensed under ${badgeResponse} license. 
+  ${linkResponse}
   ### Contributing
   Guidelines to contribute are as follows: ${data.contribute}
   ### Tests 
