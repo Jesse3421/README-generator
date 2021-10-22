@@ -78,8 +78,7 @@ function generateMarkdown(data) {
   ### Usage 
   Follow these steps to install project. ${data.usage}
   ### License 
-  The project is licensed under license. 
-  ${data.license}
+  The project is licensed under license. ${data.license}
   ### Contributing
   Guidelines to contribute are as follows: ${data.contribute}
   ### Tests 

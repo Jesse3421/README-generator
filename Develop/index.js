@@ -95,6 +95,7 @@ return inquirer.prompt([
 }
   promptUser()
     .then(data => {
+      console.log(data)
       generateMarkdown(data)
     })
     //.then const readMe = generateMarkdown(data)
