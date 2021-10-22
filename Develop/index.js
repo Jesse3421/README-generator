@@ -94,11 +94,10 @@ return inquirer.prompt([
   ])
 }
   promptUser()
-    .then(data => console.log(data))
     .then(data => {
-      return generateMarkdown(data)
+      generateMarkdown(data)
     })
-    .thenconst readMe = generateMarkdown(data)
+    //.then const readMe = generateMarkdown(data)
   
     fs.writeFile('README.md', readMe, err => {
       if(err) throw err
