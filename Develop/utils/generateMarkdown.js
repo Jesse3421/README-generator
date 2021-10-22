@@ -3,8 +3,8 @@
 //renderLicenseBadge()
 
 // If there is no license, return an empty string
-/* function renderLicenseBadge(data) {
-   console.log(license)
+ function renderLicenseBadge(data) {
+
   
   if(data.license == 'Apache 2.0'){
     return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`
@@ -21,7 +21,7 @@
   }
 
 }
-console.log(renderLicenseBadge())
+
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -46,22 +46,22 @@ console.log(renderLicenseLink())
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 
-async function setLicense() {
+async function setLicense(data) {
   const badgeResponse = await renderLicenseBadge(data.license)
   console.log('Response Recieved')
   const linkResponse = await renderLicenseLink(data.license)
   console.log(`${badgeResponse} , ${linkResponse}`)
 }
 
-*/
+
 
 module.exports = generateMarkdown;
 
 
 function generateMarkdown(data) {
- // setLicense(data)
+ setLicense(data)
   
-  }
+  
   return `# ${data.title}
   https://github.com/${data.username}/${data.title}
   ### Description
@@ -78,7 +78,8 @@ function generateMarkdown(data) {
   ### Usage 
   Follow these steps to install project. ${data.usage}
   ### License 
-  The project is licensed under license. ${data.license}
+  The project is licensed under license. ${badgeResponse}
+  ${linkResponse}
   ### Contributing
   Guidelines to contribute are as follows: ${data.contribute}
   ### Tests 
@@ -88,5 +89,5 @@ function generateMarkdown(data) {
 
 
 `;
-
+}
 

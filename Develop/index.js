@@ -95,23 +95,16 @@ return inquirer.prompt([
 }
   promptUser()
     .then(data => {
-      console.log(data)
-      generateMarkdown(data)
-    })
-    //.then const readMe = generateMarkdown(data)
-  
+    generateMarkdown(data)
+    const readMe = generateMarkdown(data)
     fs.writeFile('README.md', readMe, err => {
       if(err) throw err
       console.log('Your README file is complete. Go view the README.md file to see your new README document')
     })
-
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 /*
 
