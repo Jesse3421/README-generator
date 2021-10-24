@@ -68,7 +68,7 @@ return inquirer.prompt([
       type: 'list',
       name: 'license',
       message: 'Which license would you like to assign to you project?',
-      choices: ['Apache 2.0', 'GPL v3', 'GPL v2', 'MIT', 'BSD 3'],
+      choices: ['Apache 2.0', 'GPL v3', 'GPL v2', 'MIT', 'BSD 3', 'NONE'],
    
     },
     {
@@ -101,28 +101,13 @@ return inquirer.prompt([
       if(err) throw err
       console.log('Your README file is complete. Go view the README.md file to see your new README document')
     })
-  .catch((err) => {
-    console.log(err)
+    
   })
+  .catch((error) => {
+    if(error.isTtyError) {
+     //Prompt could not be rendered in the current environment
+    } else {
+      //Something else went wrong
+    }
 })
 
-/*
-
-  
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-fs.writeFile('README.md', generateMarkdown(), err => {
-  if(err) throw err
-  console.log('Your README file is complete. Go view the README.md file to see your new README document')
-})
-}
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
-
-
-const printReadMeData = readMeDataArr => {
-    console.log(readMeDataArr);
-} */

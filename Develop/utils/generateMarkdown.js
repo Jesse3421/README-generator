@@ -1,71 +1,48 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-//LICENSE BADGES
-//renderLicenseBadge()
-
-// If there is no license, return an empty string
  function renderLicenseBadge(data) {
 
   
   if(data.license == 'Apache 2.0'){
-    return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`
+    return `![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)`
   } else if (data.license == 'GPL v3'){
-    return `[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)]`
+    return `![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)`
   } else if (data.license == 'GPL v2'){
-    return `[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]`
+    return `![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)`
   } else if (data.license == 'MIT'){
-    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`
+    return `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
   } else if (data.license == 'BSD 3'){
-    return `[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]`
-  } else {
-             `''` //need to figure out how to show empty response
+    return `![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)`
+  } else if (data.license == 'NONE'){
+    return `(No License applied.)`
   }
-
 }
 
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
 function renderLicenseLink(data) {
   if(data.license == 'Apache 2.0'){
-    return `(https://img.shields.io/badge/License-Apache%202.0-blue.svg)`
+    return `(http://www.apache.org/licenses/LICENSE-2.0)`
   } else if (data.license == 'GPL v3'){
-    return `(http://www.gnu.org/licenses/gpl-3.0)`
+    return `(https://www.gnu.org/licenses/gpl-3.0)`
   } else if (data.license == 'GPL v2'){
-    return `(https://img.shields.io/badge/License-GPL%20v2-blue.svg)`
+    return `(https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)`
   } else if (data.license == 'MIT'){
     return `(https://opensource.org/licenses/MIT)`
   } else if (data.license == 'BSD 3'){
     return `(https://opensource.org/licenses/BSD-3-Clause)`
-  } else {
-    `''`
+  } else if (data.license == 'NONE'){
+    return `N/A`
   }
 }
-
-console.log(renderLicenseLink())
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-
-async function setLicense(data) {
-  const badgeResponse = await renderLicenseBadge(data.license)
-  console.log('Response Recieved')
-  const linkResponse = await renderLicenseLink(data.license)
-  console.log(`${badgeResponse} , ${linkResponse}`)
-}
-
-
 
 module.exports = generateMarkdown;
 
 
 function generateMarkdown(data) {
- setLicense(data)
+
   
   
-  return `# ${data.title}
+  return `# ${data.title}  ${renderLicenseBadge(data)}
   https://github.com/${data.username}/${data.title}
   ### Description
-  ${data.licenseBadge} ${data.description}
+  ${data.description}
   ### Table of Contents 
   * [Installation](#installation)
   * [Usage](#usage)
@@ -78,8 +55,7 @@ function generateMarkdown(data) {
   ### Usage 
   Follow these steps to install project. ${data.usage}
   ### License 
-  The project is licensed under license. ${badgeResponse}
-  ${linkResponse}
+  The project is licensed under ${renderLicenseBadge(data)}. Find more information about this license at  ${renderLicenseLink(data)}
   ### Contributing
   Guidelines to contribute are as follows: ${data.contribute}
   ### Tests 
